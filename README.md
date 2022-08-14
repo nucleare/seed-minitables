@@ -10,8 +10,11 @@ with one of the entries on that table, you would be able to find the unhashed fo
 
 ## To Do:
 [] Modify lists/popular_addrs.txt to list randomly generated strings
+
 [] Determine functionality of the (HEX) string of that precedes each line item and adapt to text strings
+
 [] Alternatively, manually create a list of known seed and seed hashes and save as popular_addrs.txt
+
 
 ## Usage [WORK IN PROGRESS - NOT PREPARED FOR USE]
 
