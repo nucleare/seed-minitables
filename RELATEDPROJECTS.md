@@ -17,3 +17,4 @@ Simple website that one can reverse lookup sha256 values to see if it has been r
 # Individual Sites that offer SHA256 online lookup
 - [https://sha256.web-max.ca/index.php#enter](https://sha256.web-max.ca/index.php#enter)<br>
 - [https://hashes.com/en/decrypt/hash](https://hashes.com/en/decrypt/hash)
+- [http://reverse-hash-lookup.online-domain-tools.com/](http://reverse-hash-lookup.online-domain-tools.com/)
