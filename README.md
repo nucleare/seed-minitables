@@ -1,23 +1,49 @@
-# mac-minitables [![Build Status](https://travis-ci.org/dsprenkels/mac-minitables.svg?branch=master)](https://travis-ci.org/dsprenkels/mac-minitables)
+# Seed Hash Table Maker
 
-This project is a small proof-of-concept, showing why hashing MAC-addresses does not provide
-anonymity. I.e. the hashing of MAC-addresses is easily reversible.
+This project is an attempt to modify the proof-of-concept, found from [dsprenkels/mac-minitables](https://github.com/dsprenkels/mac-minitables)
+and transform it into a theoretical SHA-256 hash table maker which pre-compute randomly generated seeds and provide a look-up table of the hashed server seeds.
 
-## Usage
+Seeds are randomly generated per user upon request and once their usage is no longer needed, the unhashed form of the seed is revealed. The resulting
+seed generally appears as a random hash or more accurately, a random string of numbers and letters. So in essence, the goal is to produce a lookup
+table of randomly generated strings of numbers and letters and their hashed form with the aim that if you could randomly generate a seed that matches
+with one of the entries on that table, you would be able to find the unhashed form of that original seed.
+
+## To Do:
+[] Modify lists/popular_addrs.txt to list randomly generated strings
+[] Determine functionality of the (HEX) string of that precedes each line item and adapt to text strings
+[] Alternatively, manually create a list of known seed and seed hashes and save as popular_addrs.txt
+
+## Usage [WORK IN PROGRESS - NOT PREPARED FOR USE]
 
 ```shell
 # Clone the repository
-git clone https://github.com/dsprenkels/mac-minitables.git
+git clone https://github.com/nucleare/seed-minitables.git
 
 # Build the app
 cargo build --release
 
-# Generate the lookup-tables for a bunch of popular prefixes
+# Generate the lookup-tables for a bunch of randomly generated seed strings
 # THIS WILL TAKE A REALLY LONG TIME
-./target/release/mac-minitables compute --table-dir tables/ lists/popular_addrs.txt
+./target/release/seed-minitables compute --table-dir tables/ lists/popular_addrs.txt 
 
-# Compute the sha256 hash of a MAC address
-./target/release/mac-minitables hash A0:39:F7:1E:22:86 | tee address-hash.txt
+# Add the sha256 hash of a randomly generated string of text (seed) to the file designated for lookup
+cat "b6237d491972f1d29ea2c0f47d4638d3cc299970f1e611149c83e25af5abe62f" > address-hash.txt
+
+# Original git project included hashing a MAC address, the following function was adapted and is only part of the reverse-engineering effort
+# To confirm a known seed hash exists in the table, hash the known seed to confirm its hashed form
+./target/release/seed-minitables hash 96d1a836e241f55f04d1c9ea23fbc1eca8919af844b1d76f9238c0d60628f877 | tee address-hash.txt
 
 # Do a lookup in the tables and find a preimage of the hash
-./target/release/mac-minitables lookup --table-dir tables/ "$(cat address-hash.txt)"
+./target/release/seed-minitables lookup --table-dir tables/ "$(cat address-hash.txt)"
+```
+
+## Concept Objective
+If you have a hased seed such as:
+`075cceb04ad1f5c62595a3f53f73e93ab12a23129c6d548bac229a5afb980e99`
+
+A lookup table would include the unhashed form:
+`96d1a836e241f55f04d1c9ea23fbc1eca8919af844b1d76f9238c0d60628f877`
+
+Therefore `96d1a836e241f55f04d1c9ea23fbc1eca8919af844b1d76f9238c0d60628f877` would be listed in lists/popular_addrs.txt while
+`075cceb04ad1f5c62595a3f53f73e93ab12a23129c6d548bac229a5afb980e99` would be in address-hash.txt so that when you run seed-minitables
+it would be able to tell you the unhashed seed was found.
