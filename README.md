@@ -31,10 +31,13 @@ cargo build --release
 # THIS WILL TAKE A REALLY LONG TIME
 ./target/release/mac-minitables compute --table-dir tables/ lists/popular_addrs.txt 
 
-# Add the sha256 hash of a randomly generated string of text (seed) to the file designated for lookup
+# Add the sha256 hash of a randomly generated string of text (seed) to the file 
+# designated for lookup
 cat "b6237d491972f1d29ea2c0f47d4638d3cc299970f1e611149c83e25af5abe62f" > address-hash.txt
 
-# Original git project included hashing a MAC address, the following function was adapted and is only part of the reverse-engineering effort
+// The original git project included hashing a MAC address for lookup, therefore the following 
+// command function was only adopted as part of the reverse-engineering effort and included
+// merely for reference purposes.
 # To confirm a known seed hash exists in the table, hash the known seed to confirm its hashed form
 ./target/release/mac-minitables hash 96d1a836e241f55f04d1c9ea23fbc1eca8919af844b1d76f9238c0d60628f877 | tee address-hash.txt
 
@@ -43,11 +46,11 @@ cat "b6237d491972f1d29ea2c0f47d4638d3cc299970f1e611149c83e25af5abe62f" > address
 ```
 
 ## Concept Objective
-If you have a hased seed such as:
-`075cceb04ad1f5c62595a3f53f73e93ab12a23129c6d548bac229a5afb980e99`
+If you have a hased seed such as: <br>
+`075cceb04ad1f5c62595a3f53f73e93ab12a23129c6d548bac229a5afb980e99`<br>
 
-A lookup table would include the unhashed form:
-`96d1a836e241f55f04d1c9ea23fbc1eca8919af844b1d76f9238c0d60628f877`
+A lookup table would include the unhashed form:<br>
+`96d1a836e241f55f04d1c9ea23fbc1eca8919af844b1d76f9238c0d60628f877`<br>
 
 Therefore `96d1a836e241f55f04d1c9ea23fbc1eca8919af844b1d76f9238c0d60628f877` would be listed in lists/popular_addrs.txt while
 `075cceb04ad1f5c62595a3f53f73e93ab12a23129c6d548bac229a5afb980e99` would be in address-hash.txt so that when you run seed-minitables
