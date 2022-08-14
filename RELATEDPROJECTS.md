@@ -1,7 +1,7 @@
 # OTher Gits
 Other git projects related to the goal at hand
 
-[Sean-Bradley/CUDALookupSHA256])(https://github.com/Sean-Bradley/CUDALookupSHA256) <br>
+[Sean-Bradley/CUDALookupSHA256](https://github.com/Sean-Bradley/CUDALookupSHA256) <br>
 SHA256 Lookup using parallel processing on a NVidia CUDA Compatible Graphics card
 
 
