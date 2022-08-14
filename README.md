@@ -35,9 +35,9 @@ cargo build --release
 # designated for lookup
 cat "b6237d491972f1d29ea2c0f47d4638d3cc299970f1e611149c83e25af5abe62f" > address-hash.txt
 
-// The original git project included hashing a MAC address for lookup, therefore the following 
-// command function was only adopted as part of the reverse-engineering effort and included
-// merely for reference purposes.
+\\ The original git project included hashing a MAC address for lookup, therefore the following 
+\\ command function was only adopted as part of the reverse-engineering effort and included
+\\ merely for reference purposes.
 # To confirm a known seed hash exists in the table, hash the known seed to confirm its hashed form
 ./target/release/mac-minitables hash 96d1a836e241f55f04d1c9ea23fbc1eca8919af844b1d76f9238c0d60628f877 | tee address-hash.txt
 
